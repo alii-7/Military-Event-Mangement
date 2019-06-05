@@ -1,0 +1,44 @@
+﻿@model Tarbya.Models.EducationalQualification
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>اضافى مؤهل دراسى</h3>
+        </div>
+    </div>
+</div>
+<br>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-4">
+            <label>اسم المؤهل الدراسى</label>
+            <div>
+                @Html.EditorFor(model => model.educationalQualificationName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.educationalQualificationName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-12">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="اضافة" class="btn btn-red col-4" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("العودة", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

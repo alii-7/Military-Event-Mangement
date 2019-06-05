@@ -1,0 +1,75 @@
+﻿@model Tarbya.ViewModels.StudentEventViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>تعيين المدنيين للزيارات </h3>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    @Html.ActionLink("معاينة الطلبة و الزيارات", "Vieww", routeValues: null, htmlAttributes: new { @class = "btn-red" })
+</div>
+<br>
+
+@using (Html.BeginForm("Index", "StudentEvents", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row form-group  ">
+        <div class="col-md-4">
+            <p class="control-label col-md-2"> الزيارة </p>
+            <div class="col-md-10">
+                @Html.DropDownList("eventID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.eventID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <p class="control-label col-md-2"> الطلاب </p>
+            <div>
+                @Html.DropDownList("students", new SelectList(ViewBag.studentList, "Value", "Text"), null, new { @multiple = "multiple", @class= "form-control" })
+                @Html.ValidationMessageFor(model => model.students, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="col-md-4">
+            <p class="control-label col-md-4"> </p>
+
+            <input type="submit" value="اضافة" class="btn btn-red col-4" />
+        </div>
+    </div>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/ckeditor_4.8.0_full/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.env.isCompatible = true;
+    </script>
+
+
+    <script src="~/bootstrap-multiselect/jquery.min.js"></script>
+    <link href="~/bootstrap-multiselect/bootstrap-multiselect.css" rel="stylesheet" />
+    <script src="~/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+
+    <script>
+        var j = jQuery.noConflict();
+        j(function () {
+            j('#students').multiselect({
+                includeSelectAllOption: true,
+                enableFiltering: true,
+                buttonWidth: '285'
+            });
+        });
+
+    </script>
+}

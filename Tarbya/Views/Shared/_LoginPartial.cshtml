@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+<div class="btn-group dropdown languages">
+    <button type="button" class="btn btn-default dropdown-toggle langaues-dropdown"
+            data-toggle="dropdown">
+        <span class="caret"></span>
+        ادارة الحساب
+    </button>
+    <ul class="dropdown-menu languages" role="menu">
+        <li>@Html.ActionLink("تعديل كلمة المرور", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })</li>
+        <li>@Html.ActionLink("تسجيل مستخدم جديد", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })</li>
+        <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">الخروج</a></li>
+    </ul>
+</div>
+    }
+}
+

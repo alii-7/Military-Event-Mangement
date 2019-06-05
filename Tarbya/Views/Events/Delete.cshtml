@@ -1,0 +1,51 @@
+﻿@model Tarbya.Models.Event
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>مسح الزيارة</h3>
+        </div>
+    </div>
+</div>
+<br />
+<h3>هل تؤكد مسح هذه الزيارة؟</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            اسم الزيارة
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventName)
+        </dd>
+
+        <dt>
+            تاريخ الزيارة
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOFEvent)
+        </dd>
+        <dt>
+            تفاصيل الزيارة
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="مسح" class="btn btn-red" /> |
+            @Html.ActionLink("العودة", "Index")
+        </div>
+    }
+</div>

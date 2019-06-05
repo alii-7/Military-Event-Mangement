@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Tarbya.Models.StudentEvent>
+@using Tarbya.ViewModels
+
+@{
+    ViewBag.Title = "Vieww";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>معاينة المدنيين و الزيارات </h3>
+        </div>
+    </div>
+</div>
+<br>
+<div>
+    @Html.ActionLink("طباعة التقرير", "Print")
+</div>
+<br />
+@Html.Partial("_ViewSearchForm", new SearchViewModel { })
+
+<table class="table table-bordered">
+    <tr>
+        <th style="text-align:right">
+            اسم الزيارة
+        </th>
+        <th style="text-align:right">
+            اسم المدنى 
+        </th>
+        <th style="text-align:right">
+            الرقم القومي
+        </th>
+        <th style="text-align:right">
+            الهاتف
+        </th>
+        <th style="text-align:right">
+            الزيارات السابقه
+        </th>
+
+ 
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string events = "";
+        <tr>
+            @foreach (var item2 in Model)
+            {
+                if (item.studentID == item2.studentID)
+                {
+                    events += item2.eventt.eventName + " -- ";
+                }
+            }
+            <td style="text-align:right">
+                @Html.DisplayFor(modelItem => item.eventt.eventName)
+            </td>
+            <td style="text-align:right">
+                @Html.DisplayFor(modelItem => item.student.firstName)
+                @Html.DisplayFor(modelItem => item.student.secondName)
+                @Html.DisplayFor(modelItem => item.student.thirdName)
+                @Html.DisplayFor(modelItem => item.student.fourthName)
+            </td>
+            <td style="text-align:right">
+                @Html.DisplayFor(modelItem => item.student.socialSecurityNumber)
+            </td>
+            <td style="text-align:right">
+                @Html.DisplayFor(modelItem => item.student.phoneNumber)
+            </td>
+            <td style="text-align:right">
+                @events
+            </td>
+        </tr>
+    }
+
+</table>
+

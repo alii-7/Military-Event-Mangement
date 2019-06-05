@@ -1,0 +1,88 @@
+﻿@model Tarbya.Models.Student
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>مسح مدنى</h3>
+        </div>
+    </div>
+</div>
+<br>
+<h3>هل تؤكد مسح هذا المدنى؟</h3>
+<div>
+
+    <div class="row">
+        <div class="col-3">
+            @if (Model.image != null)
+            {
+                <img src="@Url.Content(Model.image)" class="image-thumbanil" width="250" />
+            }
+            else
+            {
+                <p style="text-align: center">لا يوجد صورة</p>
+            }
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <p class="col-4">
+                    <span class="info-label">الاسم: </span>
+                    @Html.DisplayFor(model => model.firstName)
+                    @Html.DisplayFor(model => model.secondName)
+                    @Html.DisplayFor(model => model.thirdName)
+                    @Html.DisplayFor(model => model.fourthName)
+                </p>
+                <p class="col-4">
+                    <span class="info-label">العنوان: </span>
+                    @Html.DisplayFor(model => model.address)
+                </p>
+                <p class="col-4">
+                    <span class="info-label">الرقم القومى: </span>
+                    @Html.DisplayFor(model => model.socialSecurityNumber)
+                </p>
+                <p class="col-4">
+                    <span class="info-label"> تاريخ الميلاد: </span>
+                    @Html.DisplayFor(model => model.dateOfBirth)
+                </p>
+                <p class="col-2">
+                    <span class="info-label"> الصفة: </span>
+                    @Html.DisplayFor(model => model.gender)
+                </p>
+                <p class="col-2">
+                    <span class="info-label">الديانة: </span>
+                    @Html.DisplayFor(model => model.religion)
+                </p>
+                <p class="col-4">
+                    <span class="info-label">رقم الهاتف: </span>
+                    @Html.DisplayFor(model => model.phoneNumber)
+                </p>
+                <p class="col-4">
+                    <span class="info-label">الكلية: </span>
+                    @Html.DisplayFor(model => model.faculty.facultyName)
+                </p>
+                <p class="col-2">
+                    <span class="info-label">الفرقة: </span>
+                    @Html.DisplayFor(model => model.year.yearStatusName)
+                </p>
+                <p class="col-3">
+                    <span class="info-label">المؤهل الدراسى: </span>
+                    @Html.DisplayFor(model => model.educationalQualification.educationalQualificationName)
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="مسح" class="btn btn-red" /> |
+        @Html.ActionLink("الرجوع الى قائمة المدنيين", "Index")
+    </div>
+    }
+</div>

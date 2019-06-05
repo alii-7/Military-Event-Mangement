@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Tarbya.Models.Student>
+@using Tarbya.ViewModels
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>عرض المدنيين</h3>
+        </div>
+    </div>
+</div>
+<br>
+
+<div>
+    @Html.ActionLink("طباعة التقرير", "Print")
+</div>
+
+@Html.Partial("_ViewSearchForm", new SearchViewModel { })
+
+
+<table class="table table-bordered ">
+    <tr>
+        <th>الاسم</th>
+
+        <th style="text-align:right">
+            الرقم القومي
+        </th>
+
+        <th style="text-align:right">
+            الديانة
+        </th>
+
+        <th style="text-align:right">
+            العنوان
+        </th>
+
+        <th style="text-align:right">
+            رقم المحمول
+        </th>
+
+
+        <th style="text-align:right">
+            الأدوات
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+            @Html.DisplayFor(modelItem => item.secondName)
+            @Html.DisplayFor(modelItem => item.thirdName)
+            @Html.DisplayFor(modelItem => item.fourthName)
+
+        </td>
+        <td style="text-align:right">
+            @Html.DisplayFor(modelItem => item.socialSecurityNumber)
+        </td>
+        <td style="text-align:right">
+            @Html.DisplayFor(modelItem => item.religion)
+        </td>
+
+        <td style="text-align:right">
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td style="text-align:right">
+            @Html.DisplayFor(modelItem => item.phoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id = item.ID }, new { @class = "btn-icon" })
+            @Html.ActionLink("عرض", "Details", new { id = item.ID }, new { @class = "btn-icon" })
+            @Html.ActionLink("مسح", "Delete", new { id = item.ID }, new { @class = "btn-icon" })
+        </td>
+
+
+    </tr>
+    }
+</table>
+
+<br />

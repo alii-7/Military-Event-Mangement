@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Tarbya.Models.Faculty>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>الكليات</h3>
+        </div>
+    </div>
+</div>
+<br>
+<p>
+    @Html.ActionLink("اضافة", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            الكلية
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.facultyName)
+            </td>
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("مسح", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

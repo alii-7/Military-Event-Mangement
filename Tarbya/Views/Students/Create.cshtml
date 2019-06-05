@@ -1,0 +1,156 @@
+﻿@model Tarbya.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>اضافة مدنى</h3>
+        </div>
+    </div>
+</div>
+<br>
+
+@using (Html.BeginForm("Create", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="row">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group col-1">
+        <label>الاسم الاول</label>
+        <div>
+            @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-1">
+        <label>الاسم الثانى</label>
+        <div>
+            @Html.EditorFor(model => model.secondName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.secondName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-1">
+        <label>الاسم الثالث</label>
+        <div>
+            @Html.EditorFor(model => model.thirdName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.thirdName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-1">
+        <label>الاسم الرابع</label>
+        <div>
+            @Html.EditorFor(model => model.fourthName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fourthName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-2">
+        <label>صورة شخصية</label>
+        <div>
+            <div class="custom-file">
+                <input type="file" name="imageFile" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">اختار الملف</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group col-3">
+        <label>الرقم القومى</label>
+        <div>
+            @Html.EditorFor(model => model.socialSecurityNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.socialSecurityNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-3">
+        <label>الديانة</label>
+        <div>
+            @Html.DropDownList("religion", new SelectList(ViewBag.religions, "Value", "Text"), null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.religion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-2">
+        <label>الصفة</label>
+        <div>
+            @Html.DropDownList("gender", new SelectList(ViewBag.genders, "Value", "Text"), null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-2">
+        <label>محظور</label>
+        <div>
+            @Html.DropDownList("Blocked", new SelectList(ViewBag.Blocked, "Value", "Text"), null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Blocked, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-2">
+        <label>تاريخ الميلاد</label>
+        <div>
+            @Html.EditorFor(model => model.dateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-2">
+        <label>رقم التليفون</label>
+        <div>
+            @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-4">
+        <label>العنوان</label>
+        <div>
+            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-3">
+        <label>الكلية</label>
+        <div>
+            @Html.DropDownList("facultyID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.facultyID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-4">
+        <label>المؤهل الدراسى</label>
+        <div>
+            @Html.DropDownList("educationalQualificationID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.educationalQualificationID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-3">
+        <label>الفرقة</label>
+        <div>
+            @Html.DropDownList("yearID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.yearID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group col-12">
+        <div>
+            <input type="submit" value="اضافة مدنى" class="btn btn-red col-12" />
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

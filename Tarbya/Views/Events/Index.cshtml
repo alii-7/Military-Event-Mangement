@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Tarbya.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>عرض الزيارات</h3>
+        </div>
+    </div>
+</div>
+<br />
+<p>
+    @Html.ActionLink("انشاء زيارة جديد", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th style="text-align:right">
+            اسم الحدث
+        </th>
+        <th style="text-align:right">
+            تاريخ الحدث
+        </th>
+        <th style="text-align:right">
+            تفاصيل
+        </th>
+        <th style="text-align:right">
+            الادوات
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:right">
+                @Html.DisplayFor(modelItem => item.eventName)
+            </td>
+            <td style="text-align:right;">
+                @Html.DisplayFor(modelItem => item.dateOFEvent)
+            </td>
+            <td style="text-align:right">
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td style="text-align:right;">
+                @Html.ActionLink("تعديل", "Edit", new { id = item.ID }, new { @class = "btn-icon" })
+                @Html.ActionLink("مسح", "Delete", new { id = item.ID }, new { @class = "btn-icon" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,37 @@
+﻿@model Tarbya.Models.EducationalQualification
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-3 offset-9">
+        <div class="box-title">
+            <h3>مسح مؤهل دراسى</h3>
+        </div>
+    </div>
+</div>
+<br>
+<h3>هل تؤكد مسح هذا المؤهل الدراسى؟</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            المؤهل الدراسى
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.educationalQualificationName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="مسح" class="btn btn-red" /> 
+            @Html.ActionLink("العودة", "Index")
+        </div>
+    }
+</div>

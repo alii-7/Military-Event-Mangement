@@ -1,0 +1,17 @@
+﻿
+@model Tarbya.ViewModels.SearchViewModel
+
+@using (Html.BeginForm("Vieww", "StudentEvents"))
+{
+<div class="row">
+    <div class="form-group col-3">
+        <div class="input-group">
+            <label>  البحث باسم الزيارة</label>
+            @Html.TextBoxFor(m => m.searchString1, new { @class = "form-control" })
+            <div class="input-group-prepend">
+                <input type="submit" value="Search" class="btn btn-search" />
+            </div>
+        </div>
+    </div>
+</div>
+    }

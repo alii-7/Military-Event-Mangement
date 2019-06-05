@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <header>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="@Url.Content("~/videos/mod.mp4")" type="video/mp4">
+        </video>
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay">
+            <div class="content-title">
+                <div class="container h-100">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 logo-1">
+                            <div class="img-holder">
+                                <img src="@Url.Content("~/Image/ArmedForces.png")" alt="egyptian armed forces">
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6 title-1">
+                            <h1>ادارة التربية العسكرية</h1>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 logo-2">
+                            <div class="img-holder">
+                                <img src="@Url.Content("~/Image/egypt.png")" alt="egyptian armed forces">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-right navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav justify-content-center d-flex flex-fill">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ادارة المدنيين
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                        @Html.ActionLink("اضافة مدنى", "Create", "Students", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("عرض المدنيين", "Index", "Students", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("تعيين المدنيين", "Index", "StudentEvents", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ادارة الزيارات
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                        @Html.ActionLink("عرض الزيارات", "Index", "Events", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("اضافة زيارة", "Create", "Events", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("معاينة الطلبة و الزيارات", "Vieww", "StudentEvents", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        الخانات
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                        @Html.ActionLink("الكليات", "Index", "Faculties", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("المؤهل الدراسي", "Index", "educationalQualifications", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
